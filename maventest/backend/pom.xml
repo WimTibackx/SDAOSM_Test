@@ -76,6 +76,14 @@
                     </includes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <configuration>
+                    <url>http://127.0.0.1:8008/manager/text</url>
+                    <server>localtomcat7</server>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
