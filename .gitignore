@@ -5,3 +5,7 @@ target/
 *.jar
 *.ear
 *.class
+*.apk
+bin/
+out/
+local.properties
