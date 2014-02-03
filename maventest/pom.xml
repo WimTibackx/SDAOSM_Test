@@ -11,6 +11,7 @@
 
 		<modules>
         <module>backend</module>
+        <module>android</module>
     </modules>
     
     <build>
@@ -33,6 +34,16 @@
 		              	</execution>
 		              </executions>
 		          </plugin>
+		          <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <version>3.8.2</version>
+                <executions>
+		              	<execution>
+		              		<phase>none</phase>
+		              	</execution>
+		              </executions>
+            </plugin>
             </plugins>
         </pluginManagement>
     </build>
