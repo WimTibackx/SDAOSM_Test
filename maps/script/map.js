@@ -10,13 +10,18 @@ var markers = [];
 
 function initialize() {
     geoCoder = new google.maps.Geocoder();
+    // Geocoder: omzetten van adressen naar coordinaten
+
     var mapOptions = {
         center: new google.maps.LatLng(51.219448, 4.402464),
         zoom: 8
     };
+    // mapOption: zoomlevel, middelpunt bepalen, ...
+    // https://developers.google.com/maps/documentation/javascript/reference#MapOptions
 
     map = new google.maps.Map(document.getElementById("map-canvas"),
         mapOptions);
+    // Nieuwe map aanmaken in een HTML-element met mapOptions
 
     mapBounds = new google.maps.LatLngBounds();
 
@@ -25,30 +30,9 @@ function initialize() {
     for (var i = 0; i < jsonObj.routepoint.length; i++) {
         createMarker(i);
         drawLine(i);
+        // Voor elk punt in het JSON object wordt een marker aangemaakt en een lijn getekend naar de vorige marker
     }
 }
-
-/* function loadJsonData(file) {
-    var xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            jsonObj = JSON.parse(xhr.responseText);
-            /* jsonObj.routepoint.sort(function(a,b){
-             var c = Date(a.date);
-             var d = Date(b.date);
-             return c-d;
-             }); */ /*
-            for (var i = 0; i < jsonObj.routepoint.length; i++) {
-                createMarker(i);
-                drawLine(i);
-            }
-        }
-    };
-
-    xhr.open("GET", file, true);
-    xhr.send();
-} */
 
 function getLocation(point, callback) {
     var markerLocation;
@@ -61,6 +45,7 @@ function getLocation(point, callback) {
     }
 }
 
+// Geocoder gebruiken om adres om te zetten naar LatLng
 function decodeAddress(point, callback) {
     // console.log("calling " + ++callnr);
     geoCoder.geocode({ address: point.city }, function (result, status) {
@@ -83,14 +68,20 @@ function createMarker(index) {
             position: location,
             map: map
         });
+        // Create marker with options
+        // https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions
+
         mapBounds.extend(location);
         map.fitBounds(mapBounds);
+        // Variable met randen van de map vergroten om locatie te bevatten.
+        // Daarna map aanpassen volgens randen in variabele
 
         markers[index] = marker;
 
         google.maps.event.addListener(marker, "click", function () {
             openInfoWindow(index, marker);
         });
+        // Eventlistener toevoegen aan marker
     });
 }
 
@@ -108,7 +99,9 @@ function drawLine(index) {
                     strokeOpacity: 1.0,
                     strokeWeight: 2,
                     editable: true
-                })
+                });
+                // Nieuwe polyline aanmaken met opties
+                // https://developers.google.com/maps/documentation/javascript/reference#PolylineOptions
             });
         });
 
@@ -119,6 +112,10 @@ function openInfoWindow(index, marker) {
     if (infoWindow) {
         infoWindow.close();
     }
+    // Door van infoWindow een globale variabele te maken zorg je ervoor dat er maar 1 infoWindow open kan zijn.
+    // Als er al een infoWindow open is kan dit zo gesloten worden.
+    // Meerdere infoWindows leiden al snel tot clutter.
+
     var point = jsonObj.routepoint[index];
 
     var infoContent = '<div id="infoTitle">' + (index + 1) + '. ' + point.name + '</div>';
@@ -132,13 +129,20 @@ function openInfoWindow(index, marker) {
     infoWindow = new google.maps.InfoWindow({
         content: infoContent
     });
+    // Nieuw infoWindow maken met options
+    // https://developers.google.com/maps/documentation/javascript/reference#InfoWindowOptions
 
     infoWindow.open(map, marker);
+    // Open het infoWindow op de kaart, vasthangend aan de marker.
+    // Ook LatLng mogelijk ipv marker
 }
 
 function openStep(index) {
     if (index < markers.length) {
         map.panTo(markers[index].getPosition());
+        // Zet de opgegeven locatie in het midden van de map.
+        // Wanneer locatie binnen huidige mapBounds ligt gebeurt dit schuivend.
+
         openInfoWindow(index, markers[index]);
     } else {
         clearInterval(timer);
@@ -158,11 +162,12 @@ function openStep(index) {
     }
 }
 
+// Plain old JavaScript
 function control(type) {
     switch (type) {
         case 'play':
             openStep(currentStep);
-            timer = setInterval(function () { // TODO: higher interval
+            timer = setInterval(function () {
                 openStep(++currentStep);
             }, 2000);
 
@@ -211,6 +216,7 @@ function control(type) {
     }
 }
 
+// Plain old JavaScript listeners for every control (play, pause, ...)
 function addListeners() {
     var nodes = document.getElementById('controls').children;
     for (i = 0; i < nodes.length; i++) {
@@ -224,3 +230,4 @@ function addListeners() {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+// Listener
