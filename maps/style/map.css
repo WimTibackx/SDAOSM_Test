@@ -1,0 +1,60 @@
+/*
+html {
+    height: 100%
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0
+}
+*/
+
+html { height: 100%; }
+body { height: 100%;
+margin: 0px;
+padding: 0px;
+}
+
+#map-canvas {
+    position: absolute;
+    top: 40px;
+    bottom: 0px;
+    /* height: 100%; */
+    width: 100%;
+}
+
+/* controls */
+
+#controls {
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    margin: 22px auto;
+}
+
+#controls .button {
+    background-color:rgba(0,0,0,0.15);
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    font-size: 2em;
+    border: 1px solid #5a5a5a;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.enabled {
+    color: green;
+}
+
+.disabled {
+    color: #5a5a5a;
+}
+
+/* InfoWindow */
+
+.infoTitle {}
+.infoDesc {}
+.infoLinks {}

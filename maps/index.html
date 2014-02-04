@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="style/main.css">
+    <link rel="stylesheet" type="text/css" href="style/map.css">
+    <link rel="stylesheet" type="text/css" href="style/ionicons.css">
+    <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCjlum7CZtT3RiV5Ek2oh6PEZ1IVSJ8W_w&sensor=false">
+    </script>
+    <script type="text/javascript" src="script/map.js"></script>
+    <script type="text/javascript" src="script/mapdata.js"></script>
+    <script type="text/javascript" src="script/jquery-1.10.2.min.js"></script>
+    <title></title>
+</head>
+<body>
+<div id="navbar">
+    <a href="index.html" class="navBtn">Map</a>
+</div>
+<div id="map-canvas"></div>
+
+<div id="controls">
+    <!-- Controls: Play, Stop, Pauze, Next/Prev, First/Last -->
+    <span id="first" class="button disabled ion-skip-backward"></span>
+    <span id="prev" class="button disabled ion-ios7-skipbackward"></span>
+
+    <span id="play" class="button enabled ion-play"></span>
+    <span id="stop" class="button enabled ion-stop"></span>
+
+    <span id="next" class="button enabled ion-ios7-skipforward"></span>
+    <span id="last" class="button enabled ion-skip-forward"></span>
+</div>
+
+</body>
+</html>

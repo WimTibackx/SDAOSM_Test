@@ -1,0 +1,52 @@
+@font-face {
+    font-family: colabThin;
+    src: url(../fonts/colab/ColabThi.otf);
+}
+@font-face {
+    font-family: colabLight;
+    src: url(../fonts/colab/ColabLig.otf);
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    font-family: colabLight;
+}
+
+h1 { font-family: colabThin; }
+
+#navbar {
+    background-color: #000;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+}
+
+.navBtn {
+    color: #FFF;
+    text-decoration: none;
+    line-height: 40px;
+    padding: 20px 40px;
+    border: 1px solid #FFF;
+    margin: auto 0px;
+}
+
+.navBtn:hover {
+    color: #000;
+    background-color: #FFF;
+}
+
+#logo {
+    position: absolute;
+    top: 2px;
+    left: 40px;
+    height: 80px;
+    width: 80px;
+    opacity: 0.5;
+    z-index: 10;
+}
